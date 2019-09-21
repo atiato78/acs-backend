@@ -81,11 +81,9 @@ public class MainResource {
 				map_op.put("MinimumResponseTime", ((JSONObject)object).get("value").toString());
 				if(((JSONObject)object).get("name").toString().contains("SuccessCount"))
 				map_op.put("SuccessCount", ((JSONObject)object).get("value").toString());
-				if(((JSONObject)object).get("name").toString().contains("SuccessCount"))
-				map_op.put("SuccessCount", ((JSONObject)object).get("value").toString());
-				if(((JSONObject)object).get("name").toString().contains("ResponseTime"))
+				if(((JSONObject)object).get("name").toString().contains("TraceRouteDiagnostics.ResponseTime"))
 				map_op.put("ResponseTime", ((JSONObject)object).get("value").toString());
-				if(((JSONObject)object).get("name").toString().contains("RouteHopsNumberOfEntries"))
+				if(((JSONObject)object).get("name").toString().contains("TraceRouteDiagnostics.RouteHopsNumberOfEntries"))
 				map_op.put("RouteHopsNumberOfEntries", ((JSONObject)object).get("value").toString());
                 if(!map_op.isEmpty())
 				list.add(map_op);
