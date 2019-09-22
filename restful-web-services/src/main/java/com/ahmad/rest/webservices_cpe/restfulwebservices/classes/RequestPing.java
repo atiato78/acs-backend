@@ -87,7 +87,7 @@ public class RequestPing {
 
 
 				list.add(map);
-				beanInfo.setping_param(list);
+				beanInfo.setping_param(response_object);
 			}
 
 		} catch (Exception ex) {
@@ -124,13 +124,24 @@ public class RequestPing {
 //			a.put(beanInfo.getSubmitted_wifi_settings().get(0));
 			System.out.println("params : " + beanInfo.getping_param().toString());
 			
-				interface_1  =beanInfo.getping_param().get(0).get("Interface");
+			for (Object object : beanInfo.getping_param().getJSONArray("diagnosticParameters")) {
+				System.out.println("object: " + object.toString());
+				HashMap<String,String> map = new HashMap<String,String>();
+                if (((JSONObject)object).get("name").toString().contains("Interface"))
+				interface_1 =((JSONObject)object).get("name").toString();
+				if (((JSONObject)object).get("name").toString().contains("Host"))
+				host= ((JSONObject)object).get("name").toString();
+				if (((JSONObject)object).get("name").toString().contains("DSCP"))
+				DSCP=((JSONObject)object).get("name").toString();
+				if (((JSONObject)object).get("name").toString().contains("DataBlockSize"))
+				DataBlockSize= ((JSONObject)object).get("name").toString();
+				if (((JSONObject)object).get("name").toString().contains("Timeout"))
+				Timeout=((JSONObject)object).get("name").toString();
+				if (((JSONObject)object).get("name").toString().contains("NumberOfRepetitions"))
+				NumberOfRepetitions=((JSONObject)object).get("name").toString();
 
-				host=beanInfo.getping_param().get(1).get("Host");
-				DSCP = beanInfo.getping_param().get(2).get("DSCP");
-				DataBlockSize = beanInfo.getping_param().get(3).get("DataBlockSize");
-				Timeout = beanInfo.getping_param().get(4).get("Timeout");
-				NumberOfRepetitions = beanInfo.getping_param().get(5).get("NumberOfRepetitions");
+			}
+				
 			
 
 

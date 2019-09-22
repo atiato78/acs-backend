@@ -19,8 +19,8 @@ public class BeanInfo {
 	private JSONObject submitted_wifi_settings;
 	private String ping_id;
 	private String trace_id;
-	private List<HashMap<String,String>> params;
-	private List<HashMap<String,String>> trace;
+	private JSONObject params;
+	private JSONObject trace;
 	
 	
 	public BeanInfo() {
@@ -106,25 +106,25 @@ public class BeanInfo {
 		return trace_id;
 	}
 	
-	public void setping_param( List<HashMap<String,String>> params){
+	public void setping_param( JSONObject params){
 
 		this.params=params;
 
 	}
 
-	public List<HashMap<String,String>> getping_param(){
+	public JSONObject getping_param(){
 
 		return params;
 
 	}
 
-	public void settrace_param( List<HashMap<String,String>> trace){
+	public void settrace_param( JSONObject trace){
 
 		this.trace=trace;
 
 	}
 
-	public List<HashMap<String,String>> gettrace_param(){
+	public JSONObject gettrace_param(){
 
 		return trace;
 

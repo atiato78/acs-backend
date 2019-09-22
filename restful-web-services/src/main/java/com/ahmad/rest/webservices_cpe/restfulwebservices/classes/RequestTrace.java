@@ -89,7 +89,7 @@ public class RequestTrace {
 
 
 				list.add(map);
-				beanInfo.settrace_param(list);
+				beanInfo.settrace_param(response_object);
 			}
 
 		} catch (Exception ex) {
@@ -127,14 +127,28 @@ public class RequestTrace {
 //			a.put(beanInfo.getSubmitted_wifi_settings().get(0));
 			System.out.println("params : " + beanInfo.gettrace_param().toString());
 			
-				interface_1  =beanInfo.gettrace_param().get(4).get("Interface");
 
-				host=beanInfo.gettrace_param().get(1).get("Host");
-				DSCP = beanInfo.gettrace_param().get(6).get("DSCP");
-				DataBlockSize = beanInfo.gettrace_param().get(5).get("DataBlockSize");
-				Timeout = beanInfo.gettrace_param().get(2).get("Timeout");
-				NumberOfTries = beanInfo.gettrace_param().get(3).get("NumberOfTries");
-				MaxHopCount= beanInfo.gettrace_param().get(0).get("MaxHopCount");
+			for (Object object : beanInfo.gettrace_param().getJSONArray("diagnosticParameters")) {
+				System.out.println("object: " + object.toString());
+				HashMap<String,String> map = new HashMap<String,String>();
+                if (((JSONObject)object).get("name").toString().contains("Interface"))
+				interface_1=((JSONObject)object).get("name").toString();
+				if (((JSONObject)object).get("name").toString().contains("Host"))
+				host=((JSONObject)object).get("name").toString();
+				if (((JSONObject)object).get("name").toString().contains("DSCP"))
+				DSCP=((JSONObject)object).get("name").toString();
+				if (((JSONObject)object).get("name").toString().contains("DataBlockSize"))
+				DataBlockSize= ((JSONObject)object).get("name").toString();
+				if (((JSONObject)object).get("name").toString().contains("Timeout"))
+				Timeout=((JSONObject)object).get("name").toString();
+				if (((JSONObject)object).get("name").toString().contains("NumberOfTries"))
+				NumberOfTries=((JSONObject)object).get("name").toString();
+				if (((JSONObject)object).get("name").toString().contains("MaxHopCount"))
+				MaxHopCount=((JSONObject)object).get("name").toString();
+
+			}
+				
+			System.out.println("I:"+interface_1+"H:"+host+"D:"+DSCP+"Data:"+DataBlockSize+"Time:"+Timeout+"");
 			
 
 
